@@ -1,0 +1,112 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  idUsuario     Int       @id @default(autoincrement())
+  nome          String
+  email         String    @unique
+  senha         String
+  tipo          String    @default("usuario") @db.VarChar(10)
+  dataCriacao   DateTime  @default(now())
+  Eventos       EventoSocial[] @relation("UsuarioEventos")
+  AcoesCriadas  AcaoLimpeza[]  @relation("UsuarioAcoes")
+  Fotos         FotoComunidade[]
+  Solicitacoes  SolicitacaoRecolha[]
+  Doacoes       Doacao[]
+}
+
+model Voluntario {
+  idVoluntario  Int      @id @default(autoincrement())
+  nome          String
+  telefone      String?  @db.VarChar(20)
+  email         String?  @db.VarChar(150)
+  disponivel    Boolean  @default(true)
+  dataCadastro  DateTime @default(now())
+}
+
+model EventoSocial {
+  idEvento      Int      @id @default(autoincrement())
+  nomeEvento    String   @db.VarChar(150)
+  descricao     String?
+  dataEvento    DateTime
+  local         String?  @db.VarChar(200)
+  idOrganizador Int?      @relation("UsuarioEventos", fields: [organizadorId], references: [idUsuario], onDelete: SetNull)
+  organizadorId Int?
+  dataCriacao   DateTime @default(now())
+}
+
+model PontoManutencao {
+  idPonto       Int      @id @default(autoincrement())
+  nomePonto     String   @db.VarChar(100)
+  descricao     String?
+  latitude      Float
+  longitude     Float
+  frequencia    String   @default("mensal") @db.VarChar(10)
+  dataCadastro  DateTime @default(now())
+  Acoes         AcaoLimpeza[]
+}
+
+model AcaoLimpeza {
+  idAcao        Int      @id @default(autoincrement())
+  descricao     String
+  dataAcao      DateTime
+  local         String?  @db.VarChar(200)
+  idCriador     Int      @relation("UsuarioAcoes", fields: [criadorId], references: [idUsuario], onDelete: SetNull)
+  criadorId     Int?
+  idPonto       Int      @relation(fields: [pontoId], references: [idPonto], onDelete: Cascade)
+  pontoId       Int
+  status        String   @default("pendente") @db.VarChar(20)
+  dataCriacao   DateTime @default(now())
+}
+
+model FotoComunidade {
+  idFoto        Int      @id @default(autoincrement())
+  caminhoFoto   String   @db.VarChar(255)
+  descricao     String?
+  idUsuario     Int?      @relation(fields: [usuarioId], references: [idUsuario], onDelete: SetNull)
+  usuarioId     Int?
+  dataUpload    DateTime @default(now())
+}
+
+model SolicitacaoRecolha {
+  idSolicitacao Int      @id @default(autoincrement())
+  idUsuario     Int      @relation(fields: [usuarioId], references: [idUsuario], onDelete: Cascade)
+  usuarioId     Int
+  tipoRecolha   String   @db.VarChar(100)
+  custo         Float?
+  descricao     String?
+  status        String   @default("pendente") @db.VarChar(20)
+  dataSolicitacao DateTime @default(now())
+}
+
+model Doacao {
+  idDoacao      Int      @id @default(autoincrement())
+  idUsuario     Int      @relation(fields: [usuarioId], references: [idUsuario], onDelete: Cascade)
+  usuarioId     Int
+  titulo        String   @db.VarChar(100)
+  descricao     String?
+  foto          String?  @db.VarChar(255)
+  status        String   @default("disponivel") @db.VarChar(20)
+  dataDoacao    DateTime @default(now())
+}
+
+model EmpresaParceira {
+  idEmpresa     Int      @id @default(autoincrement())
+  nomeEmpresa   String   @db.VarChar(150)
+  contato       String?  @db.VarChar(100)
+  email         String?  @db.VarChar(150)
+  descricao     String?
+  dataCadastro  DateTime @default(now())
+}
