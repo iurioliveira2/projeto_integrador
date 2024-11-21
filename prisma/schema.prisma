@@ -110,7 +110,3 @@ model EmpresaParceira {
   descricao     String?
   dataCadastro  DateTime @default(now())
 }
-
-
- git config --global user.email "iuri@gmail.com"
-  git config --global user.name "Iuri"
