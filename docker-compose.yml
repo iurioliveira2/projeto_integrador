@@ -1,23 +1,18 @@
-version: "3"
+version: '3.8'
 
 services:
-  node:
-    image: node
-    container_name: node
-    working_dir: /app
-    command: npm start
-    hostname: backand
+  postgres:
+    image: postgres:15
+    container_name: postgres_container
+    restart: always
+    environment:
+      POSTGRES_USER: test_user # Usuário de teste
+      POSTGRES_PASSWORD: test_password # Senha de teste
+      POSTGRES_DB: test_database # Nome do banco de dados de teste
     ports:
-      - "8000:8000"
+      - "5432:5432" # Porta padrão do PostgreSQL
     volumes:
-      - ./:/app/
-  app:
-    image: node
-    container_name: app
-    working_dir: /app
-    command: node server.cjs
-    hostname: nodeserver
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./:/app/
+      - ./data:/var/lib/postgresql/data # Persistência de dados
+
+volumes:
+  postgres_data:
