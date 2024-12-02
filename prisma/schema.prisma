@@ -14,6 +14,12 @@ model Usuario {
   senha         String
   tipo          String           @default("usuario") @db.VarChar(10)
   dataCriacao   DateTime         @default(now())
+  cpfCnpj       String?         @unique @db.VarChar(20)
+  endereco      String?         @db.VarChar(255)
+  cidade        String?         @db.VarChar(100)
+  estado        String?         @db.VarChar(100)
+  cep           String?         @db.VarChar(20)
+  celular       String?         @db.VarChar(20)
   eventos       EventoSocial[]   @relation("UsuarioEventos")
   acoesCriadas  AcaoLimpeza[]    @relation("UsuarioAcoes")
   fotos         FotoComunidade[]

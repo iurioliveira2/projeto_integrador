@@ -16,7 +16,47 @@ module.exports = {
       }
     }
   },
+  async getUsuarioById(req, res) {
+    try {
+      const usuario = await UsuarioService.getUsuarioById(req.params.id);
+      if (usuario) {
+        res.json(usuario);
+      } else {
+        res.status(404).json({ error: 'Usuário não encontrado.' });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao buscar usuário.' });
+    }
+  },
 
+  async updateUsuario(req, res) {
+    try {
+      const usuarioAtualizado = await UsuarioService.updateUsuario(req.params.id, req.body);
+      if (usuarioAtualizado) {
+        res.json(usuarioAtualizado);
+      } else {
+        res.status(404).json({ error: 'Usuário não encontrado.' });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao atualizar usuário.' });
+    }
+  },
+
+  async deleteUsuario(req, res) {
+    try {
+      const usuarioDeletado = await UsuarioService.deleteUsuario(req.params.id);
+      if (usuarioDeletado) {
+        res.json({ message: 'Usuário deletado com sucesso.' });
+      } else {
+        res.status(404).json({ error: 'Usuário não encontrado.' });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao deletar usuário.' });
+    }
+  },
   async getUsuarios(req, res) {
     try {
       const usuarios = await UsuarioService.getUsuarios();
