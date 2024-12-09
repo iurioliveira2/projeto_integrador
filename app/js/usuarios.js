@@ -2,7 +2,7 @@
     window.location.href = 'cadastro.html';
 });**/
 
-fetchData('http://localhost:3000/api/usuarios', '', 'get')
+fetchData('https://pfd0j93j-3000.brs.devtunnels.ms/api/usuarios', '', 'get')
     .then(result => {
         console.log(result);
         
@@ -76,12 +76,11 @@ document.querySelector('.back').addEventListener('click', function() {
 function deleteUsuario(id) {
     console.log(id);
     
-    fetchData(`http://localhost:3000/api/usuarios/${id}`, '', 'delete')
+    fetchData(`https://pfd0j93j-3000.brs.devtunnels.ms/api/usuarios/${id}`, '', 'delete')
         .then(result => {
             alert(result.message);
             window.location.reload();
             console.log(result);
-            
         })
         .catch(error => {
             alert(error);

@@ -82,3 +82,12 @@ td{
     cursor: pointer;
     border-radius: 10%;
 }   
+
+.logo {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+.logo img {
+    max-width: 60%;
+}
