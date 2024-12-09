@@ -1,14 +1,14 @@
 const express = require('express');
 const UsuarioController = require('../controllers/usuario.controller');
 const SolicitacoesController = require('../controllers/solicitacoes.controller');
-const VoluntariosController = require('../controllers/voluntarios.controller');
+const VoluntariosController = require('../controllers/voluntarios.controllers');
 const EventosController = require('../controllers/eventos.controller');
-const EmpresasController = require('../controllers/empresas.controller');
+const EmpresasController = require('../controllers/empresa.controller');
 
 const router = express.Router();
 
 //login
-router.post('/login', UsuarioController.login);
+//router.post('/login', UsuarioController.login);
 
 // usuario
 router.post('/usuarios', UsuarioController.createUsuario);
@@ -40,5 +40,12 @@ router.delete('/empresas/:id', EmpresasController.deleteEmpresa);
 
 //eventos
 router.post('/eventos', EventosController.createEvento);
+router.get('/eventos', EventosController.getEventos);
+router.get('/eventos/:id', EventosController.getEventoById);
+
+
+//files
+//router.post('/files', EventosController.uploadFile);
+
 
 module.exports = router;

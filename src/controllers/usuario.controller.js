@@ -47,6 +47,8 @@ module.exports = {
   async deleteUsuario(req, res) {
     try {
       const usuarioDeletado = await UsuarioService.deleteUsuario(req.params.id);
+      console.log(req.params.id);
+      
       if (usuarioDeletado) {
         res.json({ message: 'Usuário deletado com sucesso.' });
       } else {

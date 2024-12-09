@@ -33,7 +33,7 @@ module.exports = {
   async deleteUsuario(id) {
     // Verifica se o usuário existe
     const usuarioExistente = await prisma.usuario.findUnique({
-      where: { id: id },
+      where: { idUsuario: parseInt(id) },
     });
   
     if (!usuarioExistente) {
@@ -44,14 +44,14 @@ module.exports = {
   
     // Deleta o usuário
     return prisma.usuario.delete({
-      where: { id: id },
+      where: { idUsuario: parseInt(id)},
     });
   },
 
   async updateUsuario(id, data) {
     // Verifica se o usuário existe
     const usuarioExistente = await prisma.usuario.findUnique({
-      where: { id: id },
+      where: { idUsuario: id },
     });
 
     if (!usuarioExistente) {
@@ -69,7 +69,7 @@ module.exports = {
 
     // Atualiza o usuário
     return prisma.usuario.update({
-      where: { id: id },
+      where: { idUsuario: id },
       data,
     });
   }

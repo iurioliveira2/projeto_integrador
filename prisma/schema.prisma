@@ -20,6 +20,7 @@ model Usuario {
   estado        String?         @db.VarChar(100)
   cep           String?         @db.VarChar(20)
   celular       String?         @db.VarChar(20)
+  status        String?         @default("A") @db.VarChar(20)
   eventos       EventoSocial[]   @relation("UsuarioEventos")
   acoesCriadas  AcaoLimpeza[]    @relation("UsuarioAcoes")
   fotos         FotoComunidade[]
@@ -83,12 +84,19 @@ model FotoComunidade {
 model SolicitacaoRecolha {
   idSolicitacao Int      @id @default(autoincrement())
   usuarioId     Int
+  telefone      String?
+  endereco      String?
+  cidade      String?
+  estado      String?
+  pais    String @default("brasil") @db.VarChar(20)
+  usuarioDesc   String?
   usuario       Usuario  @relation(fields: [usuarioId], references: [idUsuario], onDelete: Cascade)
-  tipoRecolha   String   @db.VarChar(100)
+  tipoRecolha   String?   @db.VarChar(100)
   custo         Float?
   descricao     String?
   status        String   @default("pendente") @db.VarChar(20)
   dataCriacao   DateTime @default(now())
+  imagem         String?  @db.VarChar(255)
 }
 
 model Doacao {
