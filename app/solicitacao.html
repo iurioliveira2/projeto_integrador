@@ -1,12 +1,305 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitaçções
-    </title>
+    <title>Solicitações</title>
+    <style>
+        body{
+            background-color: #87CEFA;
+        }
+        .top{
+            width: 100%;
+            text-align: center;
+        }
+        h2{
+            font-family: roboto;
+            color: rgba(0, 0, 0, 0.767);
+        }
+        .cadastro{
+            margin: 0 30px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-content: space-around;
+        }
+        .cadastro span{
+            display: flex;
+            width: 400px;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: baseline;
+        }
+        .cadastro span p{
+            padding: 5px 20px 5px 5px;
+            background: linear-gradient(to bottom, yellow, orange);
+
+        }
+        .cadastro span span
+        {
+            background: linear-gradient(to bottom, rgba(255, 255, 0, 0.877), rgba(255, 166, 0, 0.699));
+            border: 1px solid red;
+            padding: 5px;
+        }
+
+        .cadastro span span input
+        {
+            border: 1px solid red;
+            font-size: 12px;
+            width: 200px;
+        }
+        textarea{
+            border: 1px solid red;
+        }
+        .cadastro span span input:focus, textarea:focus
+        {
+            outline: none;
+        }
+
+        #tipo_solicitacao{
+            width: auto;
+            height: 30px;
+        }
+        #tipo_solicitacao input{
+            width: 20px;
+        }
+        #tipo_solicitacao label{
+            width: 140px;
+            height: 30px;
+            font: 14px roboto;
+            padding: 0 10px;
+        }
+
+        #descricao input{
+            width: 300px;
+            height: 60px;
+            text-align: start;
+        }
+
+        #span-endereco span{
+            display: flex;
+            font-size: 13px;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: stretch;
+            justify-content: space-around;
+            align-items: start;
+        }
+        #span-endereco span input{
+            width: 220px;
+            height: 18px;
+            font-size: 12px;
+            margin: 5px;
+        }
+        #span-endereco span label{
+            margin: 0px 5px;
+            font-size: 12px;
+        }
+        .imagem{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .imagem input{
+            margin: 10px 5px;
+        }
+
+        #enviar{
+            display: flex;
+            justify-content: flex-start;
+            width: 60;
+            align-items: flex-start;
+            flex-direction: row-reverse;
+            margin: 10px 0;
+        }
+
+        #enviar button{
+            border-radius: 5px;
+            border: red 1px solid;
+            background: linear-gradient(to bottom, yellow, orange);
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #enviar button img{
+            width: 13px;
+        }
+
+        .back{
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: #000000;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            border-radius: 10px;
+            font-size: 20px;
+            font: roboto;
+            margin-bottom: 20px;
+            margin-right: 20px;
+        }
+
+        .back img{
+            width: 25px;
+        }
+
+        
+        .logo {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+        }
+        .logo img {
+            max-width: 60%;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="top">
+        <h2>Cadastro de Solicição</h2>
+    </div>
+
+    <div class="cadastro">
+        <span>
+            <p>Nome do Solicitante</p>
+            <span>
+                <input type="text" name="Nome" id="Nome">
+            </span>
+        </span>
+
+        <span>
+            <p>Telefone para contato</p>
+            <span>
+                <input type="tel" name="telefone" id="telefone" placeholder="(00) 00000-0000">
+            </span>
+        </span>
+
+        <span id="span-endereco">
+            <p>Endereço</p>
+            <span>
+                <input type="text" name="endereco" id="endereco" >
+                <label for="endereco">Endereço (rua, numero, complemento)</label>
+                <input type="text" name="cidade" id="cidade" >
+                <label for="cidade"> Cidade</label>
+                <input type="text" name="estado" id="estado" >
+                <label for="estado">Estado</label>
+                <input type="text" name="pais" id="pais" value="Brasil">
+                <label for="pais">País</label>
+            </span>
+        </span>
+
+
+        <span>
+            <p>Tipo de solicitação</p>
+            <span id="tipo_solicitacao">
+                <input type="radio" id="auxilios_sociais" name="tipo_solicitacao" value="Auxilios sociais">
+                <label for="auxilios_sociais">Auxilios sociais</label>
+                <input type="radio" id="recolhimento" name="tipo_solicitacao" value="Recolhimento/Limpeza">
+                <label for="label">Recolhimento/Limpeza</label>
+            </span>
+        </span>
+
+
+        <span>
+            <p>Descreva a Solicitação</p>
+            <span id="descricao">
+                <textarea name="descricao" id="descricao" rows="4" cols="50"></textarea>
+            </span>
+        </span>
+
+        <span>
+            <p>Imagem da solicitação</p>
+            <span class="imagem">
+                <input type="file" name="imagem" id="imagem">
+                <label for="imagem">
+                    Caso sua solicitação seja de ação de recolhimento/limpeza, anexe fotos do local
+                </label>
+            </span>
+
+        </span>
+
+        <span id="enviar">
+            <button onclick="getFormData">Enviar Solicitação <img src="./images/seta-para-a-direita.png" alt=""></button>
+        </span>
+
+        <button class="back">Voltar a  pagina inicial 
+            <img src="./images/desfazer.png" alt="Desfazer">
+        </button>
+
+        <div class="logo">
+            <img src="./images/logo-acao-social.png" alt="Logo">
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('telefone').addEventListener('input', function (e) {
+            var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+            });
+        
+        document.querySelector('.back').addEventListener('click', function() {
+            window.location.href = 'menu.html';
+        });
+
+        function getFormData() {
+            const nome = document.getElementById('Nome').value;
+            const telefone = document.getElementById('telefone').value;
+            const endereco = document.getElementById('endereco').value;
+            const cidade = document.getElementById('cidade').value;
+            const estado = document.getElementById('estado').value;
+            const pais = document.getElementById('pais').value;
+            const tipoSolicitacao = document.querySelector('input[name="tipo_solicitacao"]:checked') ? document.querySelector('input[name="tipo_solicitacao"]:checked').value : '';
+            const descricao = document.getElementById('descricao').value;
+
+            if (nome == '' || telefone == '' || endereco == '' || cidade == '' || estado == '' || pais == '' || tipoSolicitacao == '' || descricao == '') {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+            const imagem = document.getElementById('imagem').files[0];
+
+            console.log({
+                nome,
+                telefone,
+                endereco,
+                cidade,
+                estado,
+                pais,
+                tipoSolicitacao,
+                descricao,
+                imagem
+            });
+
+            const formData = new FormData();
+            formData.append('usuarioDesc', nome);
+            formData.append('telefone', telefone);
+            formData.append('endereco', endereco);
+            formData.append('cidade', cidade);
+            formData.append('estado', estado);
+            formData.append('pais', pais);
+            formData.append('tipoRecolha', tipoSolicitacao);
+            formData.append('descricao', descricao);
+            if (imagem) {
+                formData.append('imagem', imagem);
+            }
+
+            fetch('http://localhost:3000/api/solicitacoes', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                alert('Solicitação enviada com sucesso!');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Erro ao enviar solicitação.');
+            });
+        }
+
+        document.querySelector('#enviar button').addEventListener('click', getFormData);
+    </script>
 </body>
 </html>

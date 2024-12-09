@@ -1,0 +1,84 @@
+body {
+    background: #87CEFA;
+
+}
+.main{
+    padding-top: 100px;
+    padding-left: 20%;
+}
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adiciona a sombra */
+    border: 1px solid #ddd; /* Borda opcional */
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    color: black;
+}
+
+th {
+    background: #7f7f7f;
+    color: white;
+}
+
+td{
+    background: #e7e0e0;
+    color: black;
+}
+
+.top{
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+}
+.new-button {
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10%89;
+}
+
+.back{
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #000000;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    border-radius: 10px;
+    font-size: 20px;
+    font: roboto;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.back img{
+    width: 25px;
+}
+
+.edite{
+    background: #26a72a;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10%;
+}
+
+.delete{
+    margin-left: 5px;
+    background: #ff0000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 10%;
+}   

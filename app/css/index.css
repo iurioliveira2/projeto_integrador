@@ -24,7 +24,8 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    background-color: yellow;
+    color: white;
+    background-color: #0000FF;
 }
 
 .top span {
@@ -45,11 +46,11 @@ body {
     height: 100vh; /* Garante que a div ocupe toda a altura da tela */
 }
 
-.body img {
-    width: 100%; /* Faz com que a imagem ocupe toda a largura */
+/*.body img {
+    width: 100%;
     height: 100vh;
-    object-fit: cover; /* Ajusta a imagem para preencher sem distorcer */
-}
+    object-fit: cover; 
+}*/
 
 p {
     font-size: 16px;
@@ -60,8 +61,12 @@ p {
     font-size: 24px;
     font-weight: lighter;
 }
+.top span a{
+    color: white;
+    font-size: 16px;
+}
 
-.top span p img {
+.top span img {
     width: 25px;;
 }
 
@@ -83,4 +88,8 @@ hr {
     margin: 10px auto;
     border-radius: 100px;
 
+}
+
+body img{
+    width: 750px;
 }
